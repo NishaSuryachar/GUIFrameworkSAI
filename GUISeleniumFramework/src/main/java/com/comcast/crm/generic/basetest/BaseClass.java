@@ -50,30 +50,40 @@ public class BaseClass {
 	    	
 	    System.out.println("==Launch the BROWSER==");
 	    
-		
+	    String BROWSER	= fLib.getDataFromPropertiesFile("browser");
+	    if(BROWSER.equals("chrome")) {
+	    	driver=new ChromeDriver();
+	    }else  if(BROWSER.equals("edge")) {
+	    	driver=new EdgeDriver();
+	    }else  if(BROWSER.equals("firefox")) {
+	    	driver=new FirefoxDriver();
+	    }else {
+	    	driver=new ChromeDriver();
+	    }
+	    
 		
 	    
-	   // String BROWSER	= fLib.getDataFromPropertiesFile("browser");
-	    String BROWSER = System.getProperty("browser" , fLib.getDataFromPropertiesFile("browser"));
-		if(BROWSER.equals("chrome")) {
-			WebDriverManager.chromedriver().setup();
-			ChromeOptions chromeOptions = new ChromeOptions();
-			driver = new ChromeDriver(chromeOptions);
-		}else if(BROWSER.equals("firefox")) {
-			WebDriverManager.firefoxdriver().setup();
-			FirefoxOptions firefoxOption = new FirefoxOptions();
-			driver = new FirefoxDriver(firefoxOption);
-		}else if(BROWSER.equals("edge")) {
-			WebDriverManager.edgedriver().setup();
-			EdgeOptions edgeOption = new EdgeOptions();
-			driver = new EdgeDriver(edgeOption);
-		}else {
-			WebDriverManager.chromedriver().setup();
-			ChromeOptions chromeOptions = new ChromeOptions();
-			driver = new ChromeDriver(chromeOptions);
-		}
-		sdriver = driver;
-		UtilityClassObject.setDriver(driver);
+//	   String BROWSER	= fLib.getDataFromPropertiesFile("browser");
+//	   //String BROWSER = System.getProperty("browser" , fLib.getDataFromPropertiesFile("browser"));
+//		if(BROWSER.equals("chrome")) {
+//			WebDriverManager.chromedriver().setup();
+//			ChromeOptions chromeOptions = new ChromeOptions();
+//			driver = new ChromeDriver(chromeOptions);
+//		}else if(BROWSER.equals("firefox")) {
+//			WebDriverManager.firefoxdriver().setup();
+//			FirefoxOptions firefoxOption = new FirefoxOptions();
+//			driver = new FirefoxDriver(firefoxOption);
+//		}else if(BROWSER.equals("edge")) {
+//			WebDriverManager.edgedriver().setup();
+//			EdgeOptions edgeOption = new EdgeOptions();
+//			driver = new EdgeDriver(edgeOption);
+//		}else {
+//			WebDriverManager.chromedriver().setup();
+//			ChromeOptions chromeOptions = new ChromeOptions();
+//			driver = new ChromeDriver(chromeOptions);
+//		}
+	//	sdriver = driver;
+	//	UtilityClassObject.setDriver(driver);
 	    }
 	    
 	    @BeforeMethod(groups = {"smokeTest", "regressionTest"})

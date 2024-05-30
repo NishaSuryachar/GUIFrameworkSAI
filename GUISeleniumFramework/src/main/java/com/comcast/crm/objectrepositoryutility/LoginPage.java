@@ -24,13 +24,13 @@ public class LoginPage extends WebDriverUtility{                              //
 		 PageFactory.initElements(driver, this);
 	 }
 	                           
-	@FindBy(name="user_name")                        // Rule-2 Object Creation
+	@FindBy(name="user")                        // Rule-2 Object Creation
 	private WebElement usernameEdt;
 	
-	@FindBy(name="user_password")
+	@FindBy(name="password")
 	private WebElement passwordEdt;
 	
-	@FindBy(id = "submitButton")
+	@FindBy(name = "btnlogin")
 	private WebElement loginBtn;
 	     
 	
@@ -56,7 +56,7 @@ public class LoginPage extends WebDriverUtility{                              //
 	 public void loginToapp(String url , String username , String password) {
 		 waitForPageToLoad(driver);
 		 driver.get(url);	
-		// driver.manage().window().maximize();
+		 driver.manage().window().maximize();
 		 usernameEdt.sendKeys(username);
 		 passwordEdt.sendKeys(password);
 		 loginBtn.click();
