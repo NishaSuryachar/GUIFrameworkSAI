@@ -22,6 +22,9 @@ public class AccountsPage {
 	@FindBy(xpath="//i[@class='fas fa-fw fa-plus']")
 	private WebElement createUserBtn;
 	
+	@FindBy(xpath = "//*[@id=\"dataTable\"]/tbody/tr/td[4]/div/div/ul/li/a")
+	private WebElement editBtnEdt;
+	
 	private WebElement searchUserEdt;
 	public WebElement getAdminDetailsBtn() {
 		return adminDetailsBtn;
@@ -38,6 +41,12 @@ public class AccountsPage {
 	public WebElement getSearchUserEdt() {
 		return searchUserEdt;
 	}
+
+	public WebElement getEditBtnEdt() {
+		return editBtnEdt;
+	}
+	
+	
 	
 	//user details:  //td[text()='Moni Empinado']/following-sibling::td[3]/div[1]/a[1]
 	//user ellipses: //td[text()='Moni Empinado']/following-sibling::td[3]/div[1]/div[1]

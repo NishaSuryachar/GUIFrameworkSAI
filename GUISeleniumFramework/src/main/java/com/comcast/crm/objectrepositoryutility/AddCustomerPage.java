@@ -5,18 +5,21 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class AddCustomerPage {
+import com.comcast.crm.generic.webdriverutility.WebDriverUtility;
 
-	@FindBy(xpath = "//input[@name='firstname']")
+public class AddCustomerPage extends WebDriverUtility{
+
+	WebDriver driver;
+	@FindBy(xpath = "//form[@action='cust_pos_trans.php?action=add']/child::div[1]/child::input")
 	private WebElement firstnameEdt;
 	
-	@FindBy(name = "lastname")
+	@FindBy(xpath = "//form[@action='cust_pos_trans.php?action=add']/child::div[2]/child::input")
 	private WebElement lastnameEdt;
 	
-	@FindBy(name = "phonenumber")
+	@FindBy(xpath  = "//form[@action='cust_pos_trans.php?action=add']/child::div[3]/child::input")
 	private WebElement phonenumberEdt;
 	
-	@FindBy(xpath = "//button[text()='Save']")
+	@FindBy(xpath = "(//i[@class='fa fa-check fa-fw'])[2]")
 	private WebElement saveBtn;
 	
 	public AddCustomerPage(WebDriver driver)
@@ -40,7 +43,7 @@ public class AddCustomerPage {
 		return saveBtn;
 	}
 	
-	public void AddCustomer(String firstname,String lastname,String phoneNumber)
+	public void AddCustomer(String firstname,String lastname,String phoneNumber) throws InterruptedException
 	{
 		firstnameEdt.sendKeys(firstname);
 		lastnameEdt.sendKeys(lastname);

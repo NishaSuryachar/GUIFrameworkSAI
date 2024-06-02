@@ -4,12 +4,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 
 import com.comcast.crm.generic.webdriverutility.WebDriverUtility;
 
 public class AddEmployeePage extends WebDriverUtility{
 
-	@FindBy(name="(//input[@placeholder='First Name'])[3]")
+	@FindBy(xpath ="(//input[@placeholder='First Name'])[3]")
 	private WebElement firstNameEdt;
 	
 	@FindBy(xpath="(//input[@name='lastname'])[3]")
@@ -18,8 +19,27 @@ public class AddEmployeePage extends WebDriverUtility{
 	@FindBy(xpath = "//input[@name='email']")
 	private WebElement emailEdt;
 	
-	@FindBy(xpath="(//input[@name='phonenumber'])[3]")
+	@FindBy(xpath = "//*[@id=\"employeeModal\"]/div/div/div[2]/form/div[5]/input")
 	private WebElement phonenumberEdt;
+	
+	@FindBy(name="gender")
+	private WebElement genderEdt;
+
+	@FindBy(xpath ="//select[@name='jobs']")
+	private WebElement jobsEdt;
+	
+	@FindBy(id="province")
+	private WebElement provinceEdt;
+	
+	@FindBy(name="city")
+	private WebElement cityEdt;
+	
+	@FindBy(name = "hireddate")
+	private WebElement hiredateEdt;
+	
+	public WebElement getHiredateEdt() {
+		return hiredateEdt;
+	}
 
 	@FindBy(xpath = "(//button[@class='btn btn-success'])[3]")
 	private WebElement SaveBtnEdt;
@@ -45,10 +65,28 @@ public class AddEmployeePage extends WebDriverUtility{
 		return phonenumberEdt;
 	}
 
+	public WebElement getGenderEdt() {
+		return genderEdt;
+	}
+
 	public WebElement getSaveBtnEdt() {
 		return SaveBtnEdt;
 	}
 	
+	public WebElement getJobsEdt() {
+		return jobsEdt;
+	}
+
+	public WebElement getProvinceEdt() {
+		return provinceEdt;
+	}
+
+	public WebElement getCityEdt() {
+		return cityEdt;
+	}
+	
+	
+
 	/**
 	 * This method contains implemenatation for Add Employee Page
 	 */
@@ -62,16 +100,18 @@ public class AddEmployeePage extends WebDriverUtility{
 	
 	/**
 	 * This method contains implementation for drop down for Add Employee Page
+	 * @throws InterruptedException 
 	 */
-	public void AddEmployee(WebElement ele1,String text1,WebElement ele2,String text2,WebElement ele3,String text3,WebElement ele4,String text4,WebElement e1,String d1,WebElement e2,String d2,WebElement e3,String d3)
+	public void AddEmployeeForDropDown(String text1,String text2,String text3,String text4) throws InterruptedException
 	{
-		select(ele1,text1);
-		select(ele2, text2);
-		select(ele3,text3);
-		select(ele4,text4);
-		e1.sendKeys(d1);
-		e2.sendKeys(d2);
-		e3.sendKeys(d3);
+		Select s1=new Select(genderEdt);
+		s1.selectByVisibleText(text1);
+		Select s2=new Select(jobsEdt);
+		s2.selectByVisibleText(text2);
+		Select s3=new Select(provinceEdt);
+		s3.selectByVisibleText(text3);
+		Select s4=new Select(cityEdt);
+		s4.selectByVisibleText(text4);
 		SaveBtnEdt.click();
 	}
 	

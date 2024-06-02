@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import com.comcast.crm.generic.fileutility.FileUtility;
 import com.comcast.crm.generic.webdriverutility.WebDriverUtility;
 
 /**
@@ -20,7 +21,8 @@ public class LoginPage extends WebDriverUtility{                              //
                            
 	WebDriver driver;
 	 public LoginPage(WebDriver driver) {             //Rule 3 : Object Initialization
-		 this.driver = driver;
+		
+		 this.driver=driver;
 		 PageFactory.initElements(driver, this);
 	 }
 	                           
@@ -52,14 +54,47 @@ public class LoginPage extends WebDriverUtility{                              //
  * @param url
  * @param username
  * @param password
+ * @throws Throwable 
  */
-	 public void loginToapp(String url , String username , String password) {
+	 public void loginToappAsAdmin(String url,String username,String password) throws Throwable {
+		
+		 
 		 waitForPageToLoad(driver);
 		 driver.get(url);	
 		 driver.manage().window().maximize();
 		 usernameEdt.sendKeys(username);
 		 passwordEdt.sendKeys(password);
 		 loginBtn.click();
+		 driver.switchTo().alert().accept();
+	 }
+ public void loginToappAsAdmin1() throws Throwable {
+		
+	 FileUtility flib=new FileUtility();
+	 String URL=flib.getDataFromPropertiesFile("url");
+	 String USERNAME=flib.getDataFromPropertiesFile("username");
+	 String PASSWORD=flib.getDataFromPropertiesFile("password");
+		 waitForPageToLoad(driver);
+		 driver.get(URL);	
+		 driver.manage().window().maximize();
+		 usernameEdt.sendKeys(USERNAME);
+		 passwordEdt.sendKeys(PASSWORD);
+		 loginBtn.click();
+		 driver.switchTo().alert().accept();
+	 }
+	
+ public void loginToappAsUser() throws Throwable {
+		 
+		 FileUtility flib=new FileUtility();
+		 String URL=flib.getDataFromPropertiesFile("url");
+		 String USERNAME=flib.getDataFromPropertiesFile("userusername");
+		 String PASSWORD=flib.getDataFromPropertiesFile("userpassword");
+		 waitForPageToLoad(driver);
+		 driver.get(URL);	
+		 driver.manage().window().maximize();
+		 usernameEdt.sendKeys(USERNAME);
+		 passwordEdt.sendKeys(PASSWORD);
+		 loginBtn.click();
+		 driver.switchTo().alert().accept();
 	 }
 	
 	

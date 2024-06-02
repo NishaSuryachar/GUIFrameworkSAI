@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 
 public class PointOfSalePage {
 
@@ -19,31 +20,16 @@ public class PointOfSalePage {
 		@FindBy(xpath="//button[text()='SUBMIT']")
 		private WebElement submitBtn;
 		
-		@FindBy(xpath="//i[@class='fas fa-fw fa-plus']")
+		@FindBy(xpath="//a[@type='button']")
 		private WebElement createCustomerBtn;
 		
-		@FindBy(xpath="//button[.='PROCEED TO PAYMENT']")
-		private WebElement paymentBtn;
-		
-		@FindBy(id="txtNumber")
-		private WebElement enterCashTxt;
-		
-		@FindBy(name="total")
-		private WebElement grandToatalEdt;
-		
-
-		public WebElement getGrandToatalEdt() {
-			return grandToatalEdt;
-		}
-
-		public WebElement getEnterCashTxt() {
-			return enterCashTxt;
-		}
-
-		public WebElement getPaymentBtn() {
-			return paymentBtn;
-		}
-
+         @FindBy(xpath = "//i[@class='fas fa-fw fa-trash']")
+         private WebElement deleteBtn;
+         
+         @FindBy(xpath = "//*[@id=\"content\"]/div/div[3]/div[2]/div[1]/div/form/table/tbody/tr[2]/td[1]")
+         private WebElement productBtn;
+         
+	
 		public WebElement getCreateCustomerBtn() {
 			return createCustomerBtn;
 		}
@@ -55,5 +41,30 @@ public class PointOfSalePage {
 		public WebElement getSubmitBtn() {
 			return submitBtn;
 		}
+
+		public WebElement getDeleteBtn() {
+			return deleteBtn;
+		}
+
+		public void setDeleteBtn(WebElement deleteBtn) {
+			this.deleteBtn = deleteBtn;
+		}
+
+		public WebDriver getDriver() {
+			return driver;
+		}
+
+		public WebElement getProductBtn() {
+			return productBtn;
+		}
+		
+		
+		
+		public void SelectCustomerDropDown(String text)
+		{
+			Select s=new Select(customerDropDown);
+			s.selectByValue(text);
+		}
+		
 	
 }

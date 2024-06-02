@@ -41,7 +41,7 @@ public class Home extends WebDriverUtility{
 	@FindBy(xpath = "//span[text()='Supplier']")
 	private WebElement supplierEdt;
 	
-	@FindBy(xpath = "//span[text()='Accounts']")
+	@FindBy(xpath = "//*[@id=\"accordionSidebar\"]/li[8]/a")
 	private WebElement AccountsEdt;
 	
 	@FindBy(xpath = "//img[@class='img-profile rounded-circle']")
@@ -100,11 +100,11 @@ public class Home extends WebDriverUtility{
 	 */
 	public void logout() {
 		
-		//switchtoAlertAndAccept(driver);
+		
 		profileImg.click();
 		mousemoveOnElement(driver, LogoutEdt);
 		LogoutEdt.click();
-		switchtoAlertAndAccept(driver);
+		LogoutPopUpBtn.click();
 	}
 
 	

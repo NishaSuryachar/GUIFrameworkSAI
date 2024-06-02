@@ -1,6 +1,7 @@
 package com.comcast.crm.generic.basetest;
 
 import java.sql.SQLException;
+import java.time.Duration;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -21,6 +22,7 @@ import com.comcast.crm.generic.fileutility.ExcelUtility;
 import com.comcast.crm.generic.fileutility.FileUtility;
 import com.comcast.crm.generic.webdriverutility.JavaUtility;
 import com.comcast.crm.generic.webdriverutility.UtilityClassObject;
+import com.comcast.crm.generic.webdriverutility.WebDriverUtility;
 import com.comcast.crm.objectrepositoryutility.Home;
 import com.comcast.crm.objectrepositoryutility.LoginPage;
 
@@ -33,6 +35,7 @@ public class BaseClass {
 	public ExcelUtility eLib = new ExcelUtility();
 	public JavaUtility jLib = new JavaUtility();
 	public  WebDriver driver = null;
+	public WebDriverUtility wlib=new WebDriverUtility();
 	public  static WebDriver sdriver = null;
 
 
@@ -61,6 +64,7 @@ public class BaseClass {
 	    	driver=new ChromeDriver();
 	    }
 	    
+	   // driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
 		
 	    
 //	   String BROWSER	= fLib.getDataFromPropertiesFile("browser");
@@ -86,16 +90,17 @@ public class BaseClass {
 	//	UtilityClassObject.setDriver(driver);
 	    }
 	    
-	    @BeforeMethod(groups = {"smokeTest", "regressionTest"})
-		public void configBM() throws Throwable {
-			System.out.println("=login=");
-			String URL = System.getProperty("url" ,fLib.getDataFromPropertiesFile("url") );
-			String USERNAME = System.getProperty("username" , fLib.getDataFromPropertiesFile("username"));
-			String PASSWORD = System.getProperty("password" , fLib.getDataFromPropertiesFile("password"));
-			LoginPage lp = new LoginPage(driver);
-			lp.loginToapp(URL, USERNAME, PASSWORD);
-		}
-	    
+//	    @BeforeMethod(groups = {"smokeTest", "regressionTest"})
+//		public void configBM() throws Throwable {
+//			System.out.println("=login=");
+//			String URL = System.getProperty("url" ,fLib.getDataFromPropertiesFile("url") );
+//			String USERNAME = System.getProperty("username" , fLib.getDataFromPropertiesFile("username"));
+//	     	String PASSWORD = System.getProperty("password" , fLib.getDataFromPropertiesFile("password"));
+//			LoginPage lp = new LoginPage(driver);
+//			lp.loginToappAsAdmin(URL, USERNAME, PASSWORD);
+//
+//		}
+//	    
 	    
 		@AfterMethod(groups = {"smokeTest", "regressionTest"})
 		public void configAM() {
